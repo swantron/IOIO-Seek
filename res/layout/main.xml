@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent">
+	<TextView  
+	    android:layout_width="fill_parent" 
+	    android:layout_height="wrap_content" 
+	    android:text="@string/seekbar1_label"
+	    />
+	<SeekBar
+		android:id="@+id/SeekBar1"
+		android:layout_width="fill_parent"
+		android:max="1000"
+		android:progress="500"
+		android:layout_height="50dp"/>
+	<TextView  
+	    android:layout_width="fill_parent" 
+	    android:layout_height="wrap_content" 
+	    android:text="@string/seekbar2_label"
+	    />
+    <SeekBar
+        android:id="@+id/SeekBar2"
+        android:layout_width="fill_parent"
+        android:max="1000"
+        android:progress="500" android:layout_height="50dp"/>
+
+	<LinearLayout
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:orientation="horizontal"
+		android:paddingTop="20px">
+		<TextView
+			android:text="@string/analog_label"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:paddingRight="5px"
+			/>
+		<TextView
+			android:id="@+id/TextView"
+			android:text="0"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			/>
+	</LinearLayout>
+
+	<ToggleButton
+		android:id="@+id/ToggleButton"
+		android:layout_gravity="center_horizontal"
+		android:layout_margin="20px"
+		android:textOff="~~~~0~~~~"
+		android:textOn="~~~~1~~~~"
+		android:layout_width="fill_parent" android:layout_height="50dp"/>
+	<ImageView android:layout_height="wrap_content" android:id="@+id/imageView1" android:layout_width="wrap_content" android:src="@drawable/seek"></ImageView>
+</LinearLayout>

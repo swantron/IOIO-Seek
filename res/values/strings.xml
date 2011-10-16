@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">IOIOSeek</string>
+    <string name="seekbar1_label">pan servo one</string>
+    <string name="seekbar2_label">pan servo two</string>
+    <string name="analog_label">relative solar reading</string>
+</resources>
