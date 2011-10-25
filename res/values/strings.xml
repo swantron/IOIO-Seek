@@ -3,5 +3,9 @@
     <string name="app_name">IOIOSeek</string>
     <string name="seekbar1_label">pan servo one</string>
     <string name="seekbar2_label">pan servo two</string>
-    <string name="analog_label">relative solar reading</string>
+    <string name="seekbar3_label">pan servo three</string>
+    <string name="seekbar4_label">pan servo four</string>
+    <string name="analog1_label">panel one</string>
+    <string name="analog2_label">panel two</string>
+    <string name="analog3_label">panel three</string>
 </resources>
