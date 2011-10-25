@@ -12,37 +12,57 @@ import android.widget.TextView;
 import android.widget.ToggleButton;
 
 public class IOIOSeek extends AbstractIOIOActivity {
-	private TextView textView_;
+	private TextView textView1_;
+	private TextView textView2_;
+	private TextView textView3_;
 	private SeekBar seekBar1_;
 	private SeekBar seekBar2_;
-	private ToggleButton toggleButton_;
+	private SeekBar seekBar3_;
+	private SeekBar seekBar4_;
+	private ToggleButton toggleButton1_;
+	private ToggleButton toggleButton2_;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main);
 
-        textView_ = (TextView)findViewById(R.id.TextView);
+        textView1_ = (TextView)findViewById(R.id.TextView1);
+        textView2_ = (TextView)findViewById(R.id.TextView2);
+        textView3_ = (TextView)findViewById(R.id.TextView3);
         seekBar1_ = (SeekBar)findViewById(R.id.SeekBar1);
         seekBar2_ = (SeekBar)findViewById(R.id.SeekBar2);
-        toggleButton_ = (ToggleButton)findViewById(R.id.ToggleButton);
-
+        seekBar3_ = (SeekBar)findViewById(R.id.SeekBar3);
+        seekBar4_ = (SeekBar)findViewById(R.id.SeekBar4);
+        toggleButton1_ = (ToggleButton)findViewById(R.id.ToggleButton1);
+        toggleButton2_ = (ToggleButton)findViewById(R.id.ToggleButton2);
         enableUi(false);
     }
 	
 	class IOIOThread extends AbstractIOIOActivity.IOIOThread {
-		private AnalogInput input_;
+		private AnalogInput input1_;
+		private AnalogInput input2_;
+		private AnalogInput input3_;
 		private PwmOutput pwmOutput1_;
 		private PwmOutput pwmOutput2_;
-		private DigitalOutput led_;
+		private PwmOutput pwmOutput3_;
+		private PwmOutput pwmOutput4_;
+		private DigitalOutput led1_;
+		private DigitalOutput led2_;
 
 		
 		public void setup() throws ConnectionLostException {
 			try {
-				input_ = ioio_.openAnalogInput(40);
-				pwmOutput1_ = ioio_.openPwmOutput(12, 100);
-				pwmOutput2_ = ioio_.openPwmOutput(13, 100);
-				led_ = ioio_.openDigitalOutput(25, false);
+				input1_ = ioio_.openAnalogInput(40);
+				input2_ = ioio_.openAnalogInput(41);
+				input3_ = ioio_.openAnalogInput(42);
+				pwmOutput1_ = ioio_.openPwmOutput(10, 100);
+				pwmOutput2_ = ioio_.openPwmOutput(11, 100);
+				pwmOutput3_ = ioio_.openPwmOutput(12, 100);
+				pwmOutput4_ = ioio_.openPwmOutput(13, 100);
+				led1_ = ioio_.openDigitalOutput(25, false);
+				led2_ = ioio_.openDigitalOutput(26, false);
+				
 				enableUi(true);
 			} catch (ConnectionLostException e) {
 				enableUi(false);
@@ -52,11 +72,19 @@ public class IOIOSeek extends AbstractIOIOActivity {
 		
 		public void loop() throws ConnectionLostException {
 			try {
-				final float reading = input_.read();
-				setText(Float.toString(reading));
+				final float reading1 = input1_.read();
+				final float reading2 = input2_.read();
+				final float reading3 = input3_.read();
+				setText1(Float.toString(reading1));
+				setText2(Float.toString(reading2));
+				setText3(Float.toString(reading3));
+							
 				pwmOutput1_.setPulseWidth(500 + seekBar1_.getProgress() * 2);
 				pwmOutput2_.setPulseWidth(500 + seekBar2_.getProgress() * 2);
-				led_.write(!toggleButton_.isChecked());
+				pwmOutput3_.setPulseWidth(500 + seekBar1_.getProgress() * 2);
+				pwmOutput4_.setPulseWidth(500 + seekBar1_.getProgress() * 2);
+				led1_.write(!toggleButton1_.isChecked());
+				led2_.write(!toggleButton2_.isChecked());
 				sleep(10);
 			} catch (InterruptedException e) {
 				ioio_.disconnect();
@@ -78,17 +106,43 @@ public class IOIOSeek extends AbstractIOIOActivity {
 			public void run() {
 				seekBar1_.setEnabled(enable);
 				seekBar2_.setEnabled(enable);
-				toggleButton_.setEnabled(enable);
+				seekBar3_.setEnabled(enable);
+				seekBar4_.setEnabled(enable);
+				toggleButton1_.setEnabled(enable);
+				toggleButton2_.setEnabled(enable);
 			}
 		});
 	}
 	
-	private void setText(final String str) {
+	private void setText1 (final String str1) {
 		runOnUiThread(new Runnable() {
 			@Override
 			public void run() {
-				textView_.setText(str);
+				textView1_.setText(str1);
+
 			}
 		});
 	}
+	
+	private void setText2 (final String str2) {
+		runOnUiThread(new Runnable() {
+			@Override
+			public void run() {
+				textView2_.setText(str2);
+
+			}
+		});
+	}
+	
+	private void setText3 (final String str3) {
+		runOnUiThread(new Runnable() {
+			@Override
+			public void run() {
+				textView3_.setText(str3);
+
+			}
+		});
+	}	
+	
+	
 }
