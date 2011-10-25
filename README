@@ -2,6 +2,45 @@ IOIO / Android project.
 
 http://swantron.com/android-ioio-project-ioioseek/
 
+V2.0 Details:
+
+Fixed signature issue.  Added support for multiple threads.  
+App now controls four servos, three analog inputs, and two simple digital outs.
+
+General Details:
+
+Specialized app that implements several digital outputs and analog inputs to Android 
+via IOIO breakout board.  As coded, app provides control of four servos and several 
+LEDs via digital output, and reads three solar panels' inputs via an analog.  
+Consider this a proof of concept per se.  
+
+Of note:  this app requires an IOIO board to fire.  
+UI will appear locked unless IOIO is detected via USB.  
+
+App acts as front end for several pin interfaces.  Setup is:
+
+Android Item | IOIO Location | UsageInitial upload. 
+
+Slider Bar 1 | Pin 10 | PWM Output, 0 - 180 degrees 
+Slider Bar 2 | Pin 11 | PWM Output, 0 - 180 degrees 
+Slider Bar 3 | Pin 12 | PWM Output, 0 - 180 degrees 
+Slider Bar 4 | Pin 13 | PWM Output, 0 - 180 degrees 
+
+Digital Out 1 | Pin 25 | Pure Digital output, 0V or 3.3V
+Digital Out 2 | Pin 26 | Pure Digital output, 0V or 3.3V
+
+Analog Read 1 | Pin 40 | Analog input, scaled 0 to 1
+Analog Read 2 | Pin 41 | Analog input, scaled 0 to 1
+Analog Read 3 | Pin 42 | Analog input, scaled 0 to 1
+
+Requires:
+
+Android device (tested on Droid 2 w/ Froyo)
+IOIO development board
+Servo motor (up to 4)
+Solar Panels (or similar source of analog input)
+LEDs (or similar device rated for 3.3V)
+
 2011 Joseph Swanson
 
 
